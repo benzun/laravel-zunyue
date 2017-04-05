@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('AccountModel','App\Model\Account');
-        $this->app->bind('UserModel','App\Model\User');
+        $this->app->bind('AccountsModel','App\Model\Accounts');
+        $this->app->bind('UsersModel','App\Model\Users');
     }
 
     /**
@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'AccountModel',
-            'UserModel',
+            'AccountsModel',
+            'UsersModel',
         ];
     }
 }

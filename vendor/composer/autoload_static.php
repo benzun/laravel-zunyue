@@ -15,6 +15,7 @@ class ComposerStaticInit8e2af49c8cb23c819c67b213d6964bfb
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -56,6 +57,10 @@ class ComposerStaticInit8e2af49c8cb23c819c67b213d6964bfb
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'SuperClosure\\' => 13,
         ),
+        'Q' => 
+        array (
+            'Qiniu\\' => 6,
+        ),
         'P' => 
         array (
             'Psy\\' => 4,
@@ -67,6 +72,8 @@ class ComposerStaticInit8e2af49c8cb23c819c67b213d6964bfb
         'O' => 
         array (
             'Overtrue\\Socialite\\' => 19,
+            'Overtrue\\LaravelFilesystem\\Qiniu\\' => 33,
+            'Overtrue\\Flysystem\\Qiniu\\' => 25,
         ),
         'M' => 
         array (
@@ -199,6 +206,10 @@ class ComposerStaticInit8e2af49c8cb23c819c67b213d6964bfb
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
         ),
+        'Qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
+        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src/Psy',
@@ -222,6 +233,14 @@ class ComposerStaticInit8e2af49c8cb23c819c67b213d6964bfb
         'Overtrue\\Socialite\\' => 
         array (
             0 => __DIR__ . '/..' . '/overtrue/socialite/src',
+        ),
+        'Overtrue\\LaravelFilesystem\\Qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/laravel-filesystem-qiniu/src',
+        ),
+        'Overtrue\\Flysystem\\Qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/overtrue/flysystem-qiniu/src',
         ),
         'Monolog\\' => 
         array (
@@ -328,6 +347,8 @@ class ComposerStaticInit8e2af49c8cb23c819c67b213d6964bfb
         'AdminUsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminUsersTableSeeder.php',
         'CreateAccountsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_03_171143_create_accounts_table.php',
         'CreateAdminUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_03_170954_create_admin_users_table.php',
+        'CreateGroupsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_173635_create_groups_table.php',
+        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_134117_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',

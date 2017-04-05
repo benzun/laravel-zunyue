@@ -27,6 +27,8 @@ class CreateAccountsTable extends Migration
             $table->char('token', 32)->default('')->comment('token令牌');
             $table->char('aes_key', 43)->default('')->comment('消息加解密密钥EncodingAESKey');
             $table->enum('activate', ['yes', 'no'])->default('no')->comment('是否在微信公众号服务器配置接入成功');
+            $table->string('qr_code')->default('')->comment('二维码地址');
+            $table->string('headimgurl')->default('')->comment('头像地址');
             $table->softDeletes();
             $table->timestamps();
         });

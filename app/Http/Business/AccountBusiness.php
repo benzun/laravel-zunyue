@@ -2,21 +2,20 @@
 
 namespace App\Http\Business;
 
-use App\Http\DataAccess\AccountDao;
+use App\Http\DataAccess\AccountsDao;
 use App\Http\Controllers\Helper;
 
 class AccountBusiness
 {
     /**
      * AccountBusiness constructor.
-     * @param AccountDao $dao
+     * @param AccountsDao $dao
      */
-    public function __construct(AccountDao $dao)
+    public function __construct(AccountsDao $dao)
     {
         $this->dao = $dao;
     }
-
-
+    
     /**
      * 获取公众号列表
      * @param array $condition

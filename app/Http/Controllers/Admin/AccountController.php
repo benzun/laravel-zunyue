@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Business\AccountBusiness;
 use App\Http\Controllers\Helper;
+use App\Jobs\syncQRcode;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -48,6 +49,9 @@ class AccountController extends Controller
         if (empty($account)) {
             return $this->formSubmitError($store_data, '添加微信公众号失败！');
         }
+
+        // 上传公众号二维码到七牛OSS
+        $this->dispatch(new syncQRcode($account->identity));
 
         $redirect_url = action('Admin\AccountController@getGuide') . '?identity=' . $account->identity;
         return redirect($redirect_url);

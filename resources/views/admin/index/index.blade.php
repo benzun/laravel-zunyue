@@ -23,6 +23,11 @@
 
                                     <div class="widget-user-header bg-aqua-active" style="background-color: #57c8f2 !important;">
                                         <div class="widget-user-image">
+                                            @if(!empty($item->headimgurl))
+                                                <img class="img-circle" src="{{ $item->headimgurl }}">
+                                            @else
+                                                <img class="img-circle" src="http://open.weixin.qq.com/qr/code/?username={{ $item['wechat_id'] }}">
+                                            @endif
                                         </div>
                                         <h3 class="widget-user-username getWechaQrCode" data-name="{{ $item['name'] }}" data-wechat_id="{{ $item['wechat_id'] }}" style="cursor: pointer;">{{ $item->name }} <i class="fa fa-qrcode"></i></h3>
                                     </div>

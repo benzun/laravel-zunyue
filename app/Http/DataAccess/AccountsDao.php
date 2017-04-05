@@ -4,14 +4,14 @@ namespace App\Http\DataAccess;
 
 use Illuminate\Support\Facades\App;
 
-class AccountDao
+class AccountsDao
 {
     /**
      * AccountDao constructor.
      */
     public function __construct()
     {
-        $this->model = App::make('AccountModel');
+        $this->model = App::make('AccountsModel');
     }
 
     /**
