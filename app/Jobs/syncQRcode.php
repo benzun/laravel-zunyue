@@ -54,9 +54,8 @@ class syncQRcode extends Job implements ShouldQueue
 
         // 上传成功，更新公众号二维码地址
         if ($disk->put($qrcode_name, $qr_code_content)) {
-            $qr_code = config('filesystems.disks.qiniu.domain') . '/' . $qrcode_name;
-            $account_info->qr_code = $qr_code;
-            $account_info->headimgurl = $qr_code . '?' . 'imageMogr2/gravity/Center/crop/86x86/blur/1x0/quality/100';
+            $account_info->qr_code = $qrcode_name;
+            $account_info->headimgurl = $qrcode_name . '?' . 'imageMogr2/gravity/Center/crop/86x86/blur/1x0/quality/100';
             $account_info->save();
         }
     }

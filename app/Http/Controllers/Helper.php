@@ -42,9 +42,9 @@ class Helper
         // 是否有获取用户信息权限
         try {
             $wechat->user->lists();
-            return 'subscribe';
-        } catch (\Exception $e) {
             return 'auth_service';
+        } catch (\Exception $e) {
+            return 'subscribe';
         }
     }
 
@@ -84,5 +84,13 @@ class Helper
         $string = array_merge(range(0, 9), range('a', 'z'), range('A', 'Z'));
         shuffle($string);
         return implode('', array_slice($string, 0, $length));
+    }
+
+    /**
+     * 七牛OSS Domain
+     */
+    public static function getQiniuDomain()
+    {
+        return config('filesystems.disks.qiniu.domain');
     }
 }

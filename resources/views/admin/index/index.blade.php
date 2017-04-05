@@ -24,7 +24,7 @@
                                     <div class="widget-user-header bg-aqua-active" style="background-color: #57c8f2 !important;">
                                         <div class="widget-user-image">
                                             @if(!empty($item->headimgurl))
-                                                <img class="img-circle" src="{{ $item->headimgurl }}">
+                                                <img class="img-circle" src="{{ \App\Http\Controllers\Helper::getQiniuDomain().$item->headimgurl }}">
                                             @else
                                                 <img class="img-circle" src="http://open.weixin.qq.com/qr/code/?username={{ $item['wechat_id'] }}">
                                             @endif

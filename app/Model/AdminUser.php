@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class AdminUsers extends Authenticatable
+class AdminUser extends Authenticatable
 {
     /**
      * The attributes that are mass assignable.

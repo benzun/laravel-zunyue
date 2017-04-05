@@ -15,9 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('admin_users_id')->default(0)->comment('管理帐号ID');
+            $table->integer('admin_users_id')->unsigned()->default(0)->comment('管理帐号ID');
             $table->foreign('admin_users_id')->references('id')->on('admin_users');
-            $table->integer('account_id')->default(0)->comment('所属公众号账号ID');
+            $table->integer('account_id')->unsigned()->default(0)->comment('所属公众号账号ID');
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->string('openid')->default('')->comment('用户的标识');
             $table->tinyInteger('subscribe')->default(0)->comment('用户是否订阅该公众号标识');
@@ -27,8 +27,8 @@ class CreateUsersTable extends Migration
             $table->string('province')->default('')->comment('省份');
             $table->string('headimgurl')->default('')->comment('头像');
             $table->integer('subscribe_time')->default(0)->comment('关注时间');
-            $table->string('unionid')->default(0)->comment('unionid');
             $table->string('remark')->default('')->comment('备注');
+            $table->string('unionid')->default('')->comment('unionid');
             $table->timestamps();
         });
     }

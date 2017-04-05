@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Business\AccountBusiness;
 use App\Http\Controllers\Helper;
 use App\Jobs\syncQRcode;
+use App\Jobs\syncWechatUsers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -53,6 +54,11 @@ class AccountController extends Controller
         // 上传公众号二维码到七牛OSS
         $this->dispatch(new syncQRcode($account->identity));
 
+        // 判断是否认证服务号，进行同步微信用户信息
+        if ($account->type == 'auth_service') {
+            $this->dispatch(new syncWechatUsers($account->identity));
+        }
+
         $redirect_url = action('Admin\AccountController@getGuide') . '?identity=' . $account->identity;
         return redirect($redirect_url);
     }
@@ -68,7 +74,7 @@ class AccountController extends Controller
     {
         $info = $account_business->show($request->get('identity', ''));
         if (empty($info)) throw new ErrorHtml('没有获取到数据');
-        
+
         return view('admin.account.update', compact('info'));
     }
 
