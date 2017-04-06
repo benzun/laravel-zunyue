@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b932433146f55b8109a76737af694293",
-    "content-hash": "5ce9360936636af75233b4e1e57f275e",
+    "hash": "be6a1269b47cce899511c9de3a79e139",
+    "content-hash": "97ca5f4c615bfeda9561e06d7e6d2591",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -230,6 +230,110 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "elfsundae/bearychat",
+            "version": "1.1.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElfSundae/BearyChat.git",
+                "reference": "ec3cdc74d9939fc23c41e7fbcc2d826606707ef7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ElfSundae/BearyChat/ec3cdc74d9939fc23c41e7fbcc2d826606707ef7.zip",
+                "reference": "ec3cdc74d9939fc23c41e7fbcc2d826606707ef7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "~6.0|~5.3",
+                "php": ">=5.4.0"
+            },
+            "suggest": {
+                "elfsundae/laravel-bearychat": "Required for Laravel integration."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElfSundae\\BearyChat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elf Sundae",
+                    "email": "elf.sundae@gmail.com"
+                }
+            ],
+            "description": "A PHP package for sending message to the BearyChat with the Incoming Webhook, and creating response payload for the Outgoing Robot.",
+            "homepage": "https://github.com/ElfSundae/BearyChat",
+            "keywords": [
+                "bearychat",
+                "incoming",
+                "outgoing",
+                "robot",
+                "webhook"
+            ],
+            "time": "2016-08-27 05:25:00"
+        },
+        {
+            "name": "elfsundae/laravel-bearychat",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ElfSundae/Laravel-BearyChat.git",
+                "reference": "87eb25998bf806d1d4f67123b596f70b487a9d47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ElfSundae/Laravel-BearyChat/87eb25998bf806d1d4f67123b596f70b487a9d47.zip",
+                "reference": "87eb25998bf806d1d4f67123b596f70b487a9d47",
+                "shasum": ""
+            },
+            "require": {
+                "elfsundae/bearychat": "~1.1",
+                "illuminate/support": "4.2.*|5.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ElfSundae\\BearyChat\\Laravel\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elf Sundae",
+                    "email": "elf.sundae@gmail.com"
+                }
+            ],
+            "description": "A Laravel integration for the BearyChat package to send message to the BearyChat.",
+            "homepage": "https://github.com/ElfSundae/Laravel-BearyChat",
+            "keywords": [
+                "bearychat",
+                "incoming",
+                "laravel",
+                "outgoing",
+                "robot",
+                "webhook"
+            ],
+            "time": "2016-11-29 07:08:26"
         },
         {
             "name": "guzzlehttp/guzzle",

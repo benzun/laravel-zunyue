@@ -31,6 +31,6 @@ class User extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany(__NAMESPACE__ . '\Tag', 'user_tag', 'users_id', 'tags_id');
+        return $this->belongsToMany(__NAMESPACE__ . '\Tag', 'user_tags', 'users_id', 'tags_id');
     }
 }

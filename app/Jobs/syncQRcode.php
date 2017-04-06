@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Storage;
 
-class syncQRcode extends Job implements ShouldQueue
+class SyncQRcode extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 

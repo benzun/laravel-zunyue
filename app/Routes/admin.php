@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/', 'IndexController@index');
     Route::controller('account', 'AccountController');
 
-    Route::group(['middleware' => 'web'], function () {
+    Route::group(['middleware' => 'has-wechat-account'], function () {
         Route::controller('user', 'UsersController');
     });
 });

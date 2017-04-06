@@ -43,6 +43,8 @@ return array(
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
+    'ElfSundae\\BearyChat\\Laravel\\' => array($vendorDir . '/elfsundae/laravel-bearychat/src'),
+    'ElfSundae\\BearyChat\\' => array($vendorDir . '/elfsundae/bearychat/src'),
     'EasyWeChat\\' => array($vendorDir . '/overtrue/wechat/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),

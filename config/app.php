@@ -160,6 +160,7 @@ return [
          * Other Application Service Providers...
          */
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
+        ElfSundae\BearyChat\Laravel\ServiceProvider::class,
     ],
 
     /*

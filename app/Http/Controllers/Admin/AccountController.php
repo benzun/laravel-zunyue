@@ -4,20 +4,34 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Business\AccountBusiness;
 use App\Http\Controllers\Helper;
-use App\Jobs\syncQRcode;
-use App\Jobs\syncWechatUsers;
+use App\Jobs\SyncQRcode;
+use App\Jobs\SyncWechatUsers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
 use App\Exceptions\ErrorHtml;
+use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
 {
+
+    /**
+     * AccountController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('has-wechat-account', ['only' => ['getIndex']]);
+    }
+
+    /**
+     * 获取公众号数据信息
+     * Author weixinhua
+     */
     public function getIndex()
     {
-
+        
     }
 
     /**
@@ -52,11 +66,11 @@ class AccountController extends Controller
         }
 
         // 上传公众号二维码到七牛OSS
-        $this->dispatch(new syncQRcode($account->identity));
+        $this->dispatch((new SyncQRcode($account->identity))->onQueue('QRcode'));
 
         // 判断是否认证服务号，进行同步微信用户信息
         if ($account->type == 'auth_service') {
-            $this->dispatch(new syncWechatUsers($account->identity));
+            $this->dispatch((new SyncWechatUsers($account->identity))->onQueue($account->identity));
         }
 
         $redirect_url = action('Admin\AccountController@getGuide') . '?identity=' . $account->identity;
@@ -78,9 +92,27 @@ class AccountController extends Controller
         return view('admin.account.update', compact('info'));
     }
 
+    /**
+     * 进入公众号平台
+     * @param Request $request
+     * @param AccountBusiness $account_business
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws ErrorHtml
+     */
+    public function getChange(Request $request, AccountBusiness $account_business)
+    {
+        $info = $account_business->show($request->get('identity', ''));
+        if (empty($info)) throw new ErrorHtml('没有获取到数据');
+
+        Session::forget('wechat_account');
+        Session::put('wechat_account', $info);
+
+        return redirect(action('Admin\AccountController@getIndex'));
+    }
+
 
     /**
-     * 接入引导
+     * 微信公众号接入引导页
      * @param Request $request
      */
     public function getGuide(Request $request, AccountBusiness $account_business)
@@ -91,6 +123,7 @@ class AccountController extends Controller
     }
 
     /**
+     * Ajax检测是否接入成功
      * @param Request $request
      * @param AccountBusiness $account_business
      */

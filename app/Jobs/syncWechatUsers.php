@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\App;
 
-class syncWechatUsers extends Job implements ShouldQueue
+class SyncWechatUsers extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 

@@ -45,8 +45,14 @@ class AccountBusiness
      * 获取公众号详情
      * @param string $identity
      */
-    public function show($identity = '')
+    public function show($identity = null)
     {
         return $this->dao->show($identity);
+    }
+
+
+    public function update()
+    {
+        
     }
 }
