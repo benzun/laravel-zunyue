@@ -25,6 +25,9 @@ class Authenticate
             }
         }
 
+        // 后台配置
+        view()->share('admin_config',config('admin'));
+
         return $next($request);
     }
 }

@@ -31,7 +31,7 @@ class AccountController extends Controller
      */
     public function getIndex()
     {
-        
+
     }
 
     /**
@@ -66,11 +66,11 @@ class AccountController extends Controller
         }
 
         // 上传公众号二维码到七牛OSS
-        $this->dispatch((new SyncQRcode($account->identity))->onQueue('QRcode'));
+        $this->dispatch(new SyncQRcode($account->identity));
 
         // 判断是否认证服务号，进行同步微信用户信息
         if ($account->type == 'auth_service') {
-            $this->dispatch((new SyncWechatUsers($account->identity))->onQueue($account->identity));
+            $this->dispatch(new SyncWechatUsers($account->identity));
         }
 
         $redirect_url = action('Admin\AccountController@getGuide') . '?identity=' . $account->identity;

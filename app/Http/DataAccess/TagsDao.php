@@ -1,26 +1,24 @@
 <?php
 
-
 namespace App\Http\DataAccess;
 
 
 use Illuminate\Support\Facades\App;
 
-class UsersDao
+class TagsDao
 {
     /**
-     * UsersDao constructor.
+     * TagsDao constructor.
      */
     public function __construct()
     {
-        $this->model = App::make('UsersModel');
+        $this->model = App::make('TagsModel');
     }
 
     /**
      * @param array $condition
      * @param array $select_field
      * @param array $relevance
-     * @return mixed
      */
     public function index(array $condition = [], array $select_field = ['*'], array $relevance = [])
     {
@@ -36,7 +34,7 @@ class UsersDao
             $builder->where('account_id', $condition['account_id']);
         }
 
-        $builder->orderBy('subscribe_time', 'DESC');
+        $builder->orderBy('id', 'DESC');
 
         if (!empty($relevance)) {
             // 关联用户标签

@@ -99,8 +99,11 @@ class SyncWechatUsers extends Job implements ShouldQueue
                             'remark'         => $wechat_user_info['remark'],
                             'unionid'        => $unionid
                         ]);
-                        \Log::info($model);
-                        $model->tags()->attach($wechat_user_info['tagid_list']);
+                        
+                        if (!empty($wechat_user_info['tagid_list'])) {
+                            $tagid_list = App::make('TagsModel')->select('id')->whereIn('tag_id', $wechat_user_info['tagid_list'])->get();
+                            $model->tags()->attach($tagid_list);
+                        }
                     }
                 }
 
