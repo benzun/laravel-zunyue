@@ -68,7 +68,7 @@
                         @if(!empty($tags_list))
                             @foreach($tags_list as $tag)
                                 <tr>
-                                    <td><span class="badge bg-green">{{ $tag->name }}</span></td>
+                                    <td><a href="{{ action('Admin\UsersController@getIndex').'?'.http_build_query(array_merge(array_except($condition,['page']),['tag_id' => $tag->id])) }}"><span class="badge bg-green">{{ $tag->name }}</span></a></td>
                                     <td>{{ $tag->count }}</td>
                                 </tr>
                             @endforeach    

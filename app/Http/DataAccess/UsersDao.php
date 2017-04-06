@@ -36,6 +36,13 @@ class UsersDao
             $builder->where('account_id', $condition['account_id']);
         }
 
+        // 标签ID
+        if (isset($condition['tag_id'])) {
+            $builder->whereHas('tags', function ($query) use ($condition) {
+                return $query->where('id', $condition['tag_id']);
+            });
+        }
+
         $builder->orderBy('subscribe_time', 'DESC');
 
         if (!empty($relevance)) {

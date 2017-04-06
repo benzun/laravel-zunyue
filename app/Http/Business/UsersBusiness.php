@@ -22,7 +22,7 @@ class UsersBusiness
      */
     public function index(array $condition = [], array $select_field = ['*'], array $relevance = [])
     {
-        $relevance['tags'] = function ($query) {
+        $relevance['tags'] = function ($query) use($condition) {
             return $query->select(['id', 'name', 'tag_id']);
         };
         return $this->dao->index($condition, $select_field, $relevance);
