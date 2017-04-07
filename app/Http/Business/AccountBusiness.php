@@ -50,8 +50,11 @@ class AccountBusiness
         return $this->dao->show($identity);
     }
 
-
-    public function update()
+    /**
+     * @param null $identity
+     * @param array $update_data
+     */
+    public function update($identity = null, $update_data = [])
     {
         
     }
