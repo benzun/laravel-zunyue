@@ -35,6 +35,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ action('Admin\UsersController@getIndex') }}"><i class="fa fa-circle-o"></i>  用户列表</a></li>
+                    <li class="active"><a href="{{ action('Admin\UsersController@getTagIndex') }}"><i class="fa fa-circle-o"></i> 标签列表</a></li>
                 </ul>
             </li>
             @endif

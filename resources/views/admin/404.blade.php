@@ -12,7 +12,7 @@
                 </div>
                 <div class="box-body">
                     <div class="callout callout-danger">
-                        <h4>{{ $error_msg }}</h4>
+                        <h4>{{ $error_msg['error_code'] }}：{{ $error_msg['error_msg'] }}</h4>
                         <h5>[<a href="javascript:history.go(-1);">点击这里返回上一页</a>]</h5>
                     </div>
                 </div>

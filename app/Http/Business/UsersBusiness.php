@@ -25,6 +25,7 @@ class UsersBusiness
         $relevance['tags'] = function ($query) use($condition) {
             return $query->select(['id', 'name', 'tag_id']);
         };
+        
         return $this->dao->index($condition, $select_field, $relevance);
     }
 }

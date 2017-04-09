@@ -7,11 +7,10 @@ use App\Http\Controllers\Helper;
 use App\Jobs\SyncQRcode;
 use App\Jobs\SyncWechatUsers;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
-use App\Exceptions\ErrorHtml;
+use App\Exceptions\ErrorHmtlOrJsonException;
 use Illuminate\Support\Facades\Session;
 
 class AccountController extends Controller
@@ -31,7 +30,7 @@ class AccountController extends Controller
      */
     public function getIndex()
     {
-
+        return view('admin.account.index');
     }
 
     /**
@@ -82,12 +81,10 @@ class AccountController extends Controller
      * @param Request $request
      * @param AccountBusiness $account_business
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws ErrorHtml
      */
     public function getUpdate(Request $request, AccountBusiness $account_business)
     {
-        $info = $account_business->show($request->get('identity', ''));
-        if (empty($info)) throw new ErrorHtml('没有获取到数据');
+        $info = $account_business->show($request->get('identity'));
 
         return view('admin.account.update', compact('info'));
     }
@@ -97,12 +94,10 @@ class AccountController extends Controller
      * @param Request $request
      * @param AccountBusiness $account_business
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws ErrorHtml
      */
     public function getChange(Request $request, AccountBusiness $account_business)
     {
-        $info = $account_business->show($request->get('identity', ''));
-        if (empty($info)) throw new ErrorHtml('没有获取到数据');
+        $info = $account_business->show($request->get('identity'));
 
         Session::forget('wechat_account');
         Session::put('wechat_account', $info);
@@ -117,8 +112,8 @@ class AccountController extends Controller
      */
     public function getGuide(Request $request, AccountBusiness $account_business)
     {
-        $info = $account_business->show($request->get('identity', ''));
-        if (empty($info)) throw new ErrorHtml('没有获取到数据');
+        $info = $account_business->show($request->get('identity'));
+        
         return view('admin.account.guide', compact('info'));
     }
 
@@ -129,7 +124,7 @@ class AccountController extends Controller
      */
     public function getCheckActivate(Request $request, AccountBusiness $account_business)
     {
-        $info = $account_business->show($request->get('identity', ''));
+        $info = $account_business->show($request->get('identity'));
         $data = !empty($info) && $info->activate == 'yes' ? 'yes' : 'no';
         return $this->jsonFormat($data);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Business;
 
 use App\Http\DataAccess\AccountsDao;
 use App\Http\Controllers\Helper;
+use App\Exceptions\ErrorHmtlOrJsonException;
 
 class AccountBusiness
 {
@@ -47,7 +48,13 @@ class AccountBusiness
      */
     public function show($identity = null)
     {
-        return $this->dao->show($identity);
+        if (empty($identity)) throw new ErrorHmtlOrJsonException(10000);
+
+        $result = $this->dao->show($identity);
+
+        if (empty($result)) throw new ErrorHmtlOrJsonException(20001);
+
+        return $result;
     }
 
     /**

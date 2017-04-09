@@ -84,7 +84,6 @@
                                 <button type="button" style="margin-left: 5px;" class="btn btn-flat btn-success" onclick="history.back();"> 返 回 </button>
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>

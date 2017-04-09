@@ -28,7 +28,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $e
+     * @param  \Exception $e
      * @return void
      */
     public function report(Exception $e)
@@ -39,17 +39,23 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $e
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof ErrorHtml) {
-            $error_msg = $e->getErrorMessage();
+        if ($e instanceof ErrorHmtlOrJsonException) {
+            $error_msg      = $e->getErrorMessage();
+            $is_return_json = $e->isReturnjson();
+
+            if ($request->ajax() || $request->pjax() || $is_return_json) {
+                return response()->json($e->getErrorMessage(), 200, [], 256);
+            }
+            
             return view('admin.404', compact('error_msg'));
         }
-        
+
         return parent::render($request, $e);
     }
 }

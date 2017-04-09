@@ -47,8 +47,8 @@ class Controller extends BaseController
         }
 
         return [
-            'code' => 0,
-            'msg'  => '成功',
+            'error_code' => 0,
+            'error_msg'  => '成功',
             'data' => $data,
         ];
     }
