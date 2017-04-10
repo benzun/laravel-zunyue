@@ -22,6 +22,7 @@ class ErrorHmtlOrJsonException extends Exception
 
         20001 => '公众号不存在',
         20002 => '没有权限获取微信用户资料',
+        20003 => 'AppId(应用ID) 或者 AppSecret(应用密钥) 填写错误！',
 
         // 标签
         30001 => '标签名称已存在'

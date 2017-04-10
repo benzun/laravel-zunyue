@@ -87,7 +87,7 @@ class AccessToken
     protected $prefix = 'easywechat.common.access_token.';
 
     // API
-    const API_TOKEN_GET = 'https://oauth.jd.com/oauth/authorize?';
+    const API_TOKEN_GET = 'https://api.weixin.qq.com/cgi-bin/token';
 
     /**
      * Constructor.

@@ -22,6 +22,7 @@ class CreateTagsTable extends Migration
             $table->integer('tag_id')->unsigned()->default(0)->comment('标签ID');
             $table->string('name',45)->default('')->comment('名称');
             $table->integer('count')->unsigned()->default(0)->comment('用户数量');
+            $table->enum('built_in',['yes','no'])->default('no')->comment('是否系统内置');
             $table->timestamps();
         });
     }

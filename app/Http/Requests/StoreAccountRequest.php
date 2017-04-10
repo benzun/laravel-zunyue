@@ -27,8 +27,8 @@ class StoreAccountRequest extends Request
         return [
             'name'        => 'required',
             'wechat_id'   => 'required',
-            'original_id' => 'required|max:15',
-            'app_id'      => 'sometimes|required|unique:accounts,app_id,null,id,admin_users_id,' . Helper::getAdminLoginInfo(),
+            'original_id' => 'required|min:15',
+            'app_id'      => 'sometimes|required|min:18|unique:accounts,app_id,null,id,admin_users_id,' . Helper::getAdminLoginInfo(),
             'secret'      => 'required|max:32',
         ];
     }

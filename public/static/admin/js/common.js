@@ -5,6 +5,7 @@ $('.getWechaQrCode').click(function () {
         text: "点击鼠标右键，选择图片另存为,进行保存二维码",
         html: true
     });
+    $('.sweet-alert h2').height(360);
 });
 
 $.ajaxSetup({

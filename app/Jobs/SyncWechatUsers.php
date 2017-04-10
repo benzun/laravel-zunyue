@@ -51,11 +51,30 @@ class SyncWechatUsers extends Job implements ShouldQueue
 
             $tag_model = App::make('TagsModel');
 
-            foreach ($tags->tags as $tag) {
+            $tags_array = $tags->tags;
+
+            // 创建内置标签
+            $built_in_array = ['淘宝/天猫', '京东'];
+            foreach ($built_in_array as $built_in) {
+                try {
+                    $wechat_return = $wechat_service->user_tag->create($built_in);
+                    $wechat_return = $wechat_return->tag;
+
+                    $wechat_return['is_system'] = 'yes';
+                    $wechat_return['count']     = 0;
+                    array_push($tags_array, $wechat_return);
+                } catch (\Exception $e) {
+
+                }
+            }
+
+            foreach ($tags_array as $tag) {
+                $is_system = $tag['name'] == '星标组' ? 'yes' : 'no';
                 $tag_model->create([
                     'tag_id'         => $tag['id'],
                     'name'           => $tag['name'],
                     'count'          => $tag['count'],
+                    'is_system'      => $is_system,
                     'admin_users_id' => $account_info->admin_users_id,
                     'account_id'     => $account_info->id
                 ]);
@@ -99,7 +118,7 @@ class SyncWechatUsers extends Job implements ShouldQueue
                             'remark'         => $wechat_user_info['remark'],
                             'unionid'        => $unionid
                         ]);
-                        
+
                         if (!empty($wechat_user_info['tagid_list'])) {
                             $tagid_list = App::make('TagsModel')->select('id')->whereIn('tag_id', $wechat_user_info['tagid_list'])->get();
                             $model->tags()->attach($tagid_list);

@@ -63,6 +63,8 @@ class AccountBusiness
      */
     public function update($identity = null, $update_data = [])
     {
+        if (empty($identity) || empty($update_data)) throw new ErrorHmtlOrJsonException(10000);
         
+        return $this->dao->update($identity, $update_data);
     }
 }

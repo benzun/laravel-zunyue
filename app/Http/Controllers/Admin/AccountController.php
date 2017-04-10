@@ -90,6 +90,44 @@ class AccountController extends Controller
     }
 
     /**
+     * 更新公众号信息
+     * @param Request $request
+     * @param AccountBusiness $account_business
+     */
+    public function postUpdate(Request $request, AccountBusiness $account_business)
+    {
+        $identity = $request->get('identity');
+
+        $update_data = $request->only([
+            'name', 'wechat_id', 'original_id', 'secret'
+        ]);
+
+        // 判断 secret 是否有修改
+        if (isset($update_data['secret']) && substr_count($update_data['secret'], '*') > 0) {
+            unset($update_data['secret']);
+        } else {
+            // 检测微信公众号 AppId AppSecret 输入是否正确
+            $result = Helper::checkWechatAccount($update_data['app_id'], $update_data['secret']);
+            if ($result === false) {
+                return $this->formSubmitError($update_data, 'AppId(应用ID) 或者 AppSecret(应用密钥) 填写错误！');
+            }
+            // 更新接入状态
+            $update_data['activate'] = 'no';
+        }
+
+        // 更新公众号信息
+        $result = $account_business->update($identity, $update_data);
+
+        if (empty($result)) {
+            return $this->formSubmitError($update_data, '更新公众号信息失败！');
+        }
+
+        $redirect_url = action('Admin\IndexController@index');
+        return redirect($redirect_url);
+
+    }
+
+    /**
      * 进入公众号平台
      * @param Request $request
      * @param AccountBusiness $account_business
@@ -113,7 +151,7 @@ class AccountController extends Controller
     public function getGuide(Request $request, AccountBusiness $account_business)
     {
         $info = $account_business->show($request->get('identity'));
-        
+
         return view('admin.account.guide', compact('info'));
     }
 

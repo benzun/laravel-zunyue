@@ -34,17 +34,12 @@
 
                                     <div class="box-footer" style="padding-left: 15px;padding-right: 15px;padding-bottom: 0px;">
                                         <div class="row" style="padding: 10px 0;">
-                                            <div class="col-sm-4 border-right">
+                                            <div class="col-sm-6 border-right">
                                                 <div class="description-block">
-                                                    <span class="description-text">SALES</span>
+                                                    <span class="description-text">{{ $admin_config['account_type'][$item->type] }}</span>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4 border-right">
-                                                <div class="description-block">
-                                                    <span class="description-text">SALES</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-6">
                                                 <div class="description-block">
                                                     <a href="{{ action('Admin\AccountController@getUpdate') }}?identity={{ $item['identity'] }}"><i class="fa fa-edit" aria-hidden="true"></i> 编辑</a>
                                                 </div>

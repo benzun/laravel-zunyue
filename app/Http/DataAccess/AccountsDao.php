@@ -66,6 +66,22 @@ class AccountsDao
      */
     public function update($identity = null, array $update_data = [])
     {
+        $allow = [
+            'name',
+            'wechat_id',
+            'original_id',
+            'type',
+            'activate'
+        ];
 
+        $allow_data = [];
+
+        foreach ($update_data as $key => $value) {
+            if (in_array($key, $allow) && !empty($value)) {
+                $allow_data[$key] = $value;
+            }
+        }
+        
+        return $this->model->where('identity', $identity)->update($allow_data);
     }
 }

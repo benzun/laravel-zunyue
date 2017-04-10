@@ -57,4 +57,44 @@ class UsersDao
         $page_size = isset($condition['page_size']) && is_numeric($condition['page_size']) ? abs($condition['page_size']) : 20;
         return $builder->paginate($page_size);
     }
+
+    /**
+     * 根据openid获取详情
+     * @param null $openid
+     */
+    public function show($openid = null)
+    {
+        return $this->model->where('openid', $openid)->first();
+    }
+
+    /**
+     * @param array $store_data
+     */
+    public function store(array $store_data = [])
+    {
+        return $this->model->create($store_data);
+    }
+
+
+    /**
+     * 更新
+     * @param null $openid
+     * @param array $update_data
+     */
+    public function update($openid = null, array $update_data = [])
+    {
+        $allow = [
+            'subscribe', 'nickname', 'sex', 'city', 'province', 'headimgurl', 'unionid', 'remark'
+        ];
+
+        $allow_update_data = [];
+
+        foreach ($update_data as $key => $value) {
+            if (in_array($key, $allow)) {
+                $allow_update_data[$key] = $value;
+            }
+        }
+
+        return $this->model->where('openid', $openid)->update($allow_update_data);
+    }
 }
