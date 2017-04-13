@@ -51,6 +51,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         // 检测是否设置了公众号进入
-        'has-wechat-account' =>\App\Http\Middleware\HasWechatAccount::class,
+        'has-wechat-account' => \App\Http\Middleware\HasWechatAccount::class,
+        // 微信登录
+        'wechat-login' => \App\Http\Middleware\WechatLogin::class,
     ];
 }

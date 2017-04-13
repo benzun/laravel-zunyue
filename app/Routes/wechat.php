@@ -13,3 +13,6 @@
 
 Route::any('service','WechatController@service');
 
+Route::group(['middleware' => 'wechat-login'], function () {
+    Route::controller('high-praise-cashback', 'HighPraiseCashbackController');
+});

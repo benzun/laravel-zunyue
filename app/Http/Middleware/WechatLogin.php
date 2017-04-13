@@ -48,6 +48,9 @@ class WechatLogin
         // 检测是否已经微信登录
         if (!session('oauth_user_' . $identity)) {
             $account_info = $this->account_business->show($identity);
+            if ($account_info->type != 'auth_service'){
+                throw new ErrorHmtlOrJsonException(20002);
+            }
 
             try {
                 $wechat_app = Helper::wechatApp([
