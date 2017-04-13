@@ -46,14 +46,15 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         if ($e instanceof ErrorHmtlOrJsonException) {
-            $error_msg      = $e->getErrorMessage();
+            $error_msg = $e->getErrorMessage();
+            
             if ($request->ajax() || $request->pjax()) {
                 return response()->json($e->getErrorMessage(), 200, [], 256);
-            }elseif(strpos($request->header('user-agent'), 'MicroMessenger') !== false){
+            } elseif ($request->is('wechat/*')) {
                 return view('wechat.404', compact('error_msg'));
+            } elseif ($request->is('admin/*')) {
+                return view('admin.404', compact('error_msg'));
             }
-            
-            return view('admin.404', compact('error_msg'));
         }
 
         return parent::render($request, $e);
