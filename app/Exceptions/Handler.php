@@ -47,10 +47,10 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ErrorHmtlOrJsonException) {
             $error_msg      = $e->getErrorMessage();
-            $is_return_json = $e->isReturnjson();
-
-            if ($request->ajax() || $request->pjax() || $is_return_json) {
+            if ($request->ajax() || $request->pjax()) {
                 return response()->json($e->getErrorMessage(), 200, [], 256);
+            }elseif(strpos($request->header('user-agent'), 'MicroMessenger') !== false){
+                return view('wechat.404', compact('error_msg'));
             }
             
             return view('admin.404', compact('error_msg'));

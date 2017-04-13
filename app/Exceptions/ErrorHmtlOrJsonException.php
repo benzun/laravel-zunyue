@@ -6,12 +6,19 @@ use Exception;
 
 class ErrorHmtlOrJsonException extends Exception
 {
+    /**
+     * @var null|string
+     */
     private $error_code = null;
 
-    private $is_return_json = 0;
-
+    /**
+     * @var array
+     */
     private $data = [];
 
+    /**
+     * @var array
+     */
     private $error_code_list = [
         // 基本
         10000 => '参数错误',
@@ -34,10 +41,9 @@ class ErrorHmtlOrJsonException extends Exception
      * @param string $error_code
      * @param array $data
      */
-    public function __construct($error_code, $is_return_json = 0)
+    public function __construct($error_code)
     {
         $this->error_code = $error_code;
-        $this->is_return_json = $is_return_json;
     }
 
     /**
@@ -54,13 +60,4 @@ class ErrorHmtlOrJsonException extends Exception
             'error_msg'  => $this->error_code_list[$this->error_code]
         ];
     }
-
-    /**
-     * 是否返回Json数据
-     */
-    public function isReturnjson()
-    {
-        return $this->is_return_json;
-    }
-
 }
